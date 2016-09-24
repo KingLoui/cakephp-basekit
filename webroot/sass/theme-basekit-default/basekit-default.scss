@@ -1,0 +1,13 @@
+/*  BaseKit Main Stylesheet */
+
+$icon-font-path: "../../fonts/bootstrap/"; 
+
+@import "../bootstrap/bootstrap";
+
+@import "../bootstrap/bootstrap/theme";
+
+
+body {
+	padding-top: 70px;
+    padding-bottom: 30px;
+}

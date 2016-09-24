@@ -1,0 +1,28 @@
+{
+    "name": "kingloui/cakephp-basekit",
+    "description": "BaseKit plugin for CakePHP",
+    "type": "cakephp-plugin",
+    "require": {
+        "php": ">=5.5.9",
+        "cakephp/cakephp": ">=3.3.2 <4.0.0",
+        "burzum/cakephp-file-storage": "^1.1",
+        "burzum/cakephp-imagine-plugin": "^2.1",
+        "cakedc/users": "^3.2",
+        "gourmet/knp-menu": "~0.4",
+        "friendsofcake/bootstrap-ui": "^0.5.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "KingLoui\\BaseKit\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KingLoui\\BaseKit\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+        }
+    }
+}
