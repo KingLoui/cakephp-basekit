@@ -22,6 +22,7 @@ trait BaseKitTrait
     }
     public function beforeFilter(Event $event)
     {
+        // disable authentication for all controllers/actions
         //$this->Auth->allow();
 
         parent::beforeFilter($event);
