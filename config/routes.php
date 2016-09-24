@@ -5,13 +5,13 @@ use Cake\Routing\Route\DashedRoute;
 
 
 
-// Router::plugin(
-//     'KingLoui/BaseKit',
-//     ['path' => '/basekit'],
-//     function (RouteBuilder $routes) {
-//         $routes->fallbacks(DashedRoute::class);
-//     }
-// );
+Router::plugin(
+    'KingLoui/BaseKit',
+    ['path' => '/basekit'],
+    function (RouteBuilder $routes) {
+        $routes->fallbacks(DashedRoute::class);
+    }
+);
 
 
 Router::prefix('admin', function ($routes) {
