@@ -1,4 +1,4 @@
-<?= $this->Html->script('KingLoui/BaseKit.vendor/holder.min.js', ['block' => 'script_body']); ?>
+<?= $this->Html->script('KingLoui/BaseKit.vendor/holder/holder.min.js', ['block' => 'scriptfiles_body']); ?>
 <?php $this->append('css'); ?>
 <style>
   .theme-dropdown .dropdown-menu {

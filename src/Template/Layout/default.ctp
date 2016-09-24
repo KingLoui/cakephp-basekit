@@ -23,10 +23,10 @@ $pageTitle = 'BaseKit:';
     <?= // Body scripts
         $this->Html->script(
         [
-            'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', 
-            'KingLoui/BaseKit.bootstrap.min.js'
+            'KingLoui/BaseKit.vendor/jquery/jquery-3.1.0.min.js', 
+            'KingLoui/BaseKit.vendor/bootstrap/bootstrap.min.js',
         ], 
-        ['block' => 'script_body'])
+        ['block' => 'scriptfiles_body'])
     ?>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -87,7 +87,7 @@ $pageTitle = 'BaseKit:';
         </script>
     <?php $this->end(); ?>
 
-
+    <?= $this->fetch('scriptfiles_body') ?>
     <?= $this->fetch('script_body') ?>
   </body>
 </html>
