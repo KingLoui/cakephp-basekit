@@ -109,14 +109,6 @@ $user = $this->request->session()->read('Auth.User');
             <div class="wrapper wrapper-content animated fadeInRight">
                 <?= $this->fetch('content') ?>
             </div>
-            <div class="footer">
-                <div class="pull-right">
-                    Bam!
-                </div>
-                <div>
-                    <strong>Copyright</strong> KingLoui © 2016
-                </div>
-            </div>
         </div>
     </div>
     <?= $this->fetch('scriptfiles_body') ?>

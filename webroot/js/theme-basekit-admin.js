@@ -47,7 +47,7 @@ $(document).ready(function () {
     // Close menu in canvas mode
     $('.close-canvas-menu').on('click', function () {
         $("body").toggleClass("mini-navbar");
-        SmoothlyMenu();
+        animateMenu();
     });
 
     // Run menu of canvas
@@ -56,38 +56,9 @@ $(document).ready(function () {
         railOpacity: 0.9
     });
 
-    // Open close right sidebar
-    $('.right-sidebar-toggle').on('click', function () {
-        $('#right-sidebar').toggleClass('sidebar-open');
-    });
 
-    // Initialize slimscroll for right sidebar
-    $('.sidebar-container').slimScroll({
-        height: '100%',
-        railOpacity: 0.4,
-        wheelStep: 10
-    });
 
-    // Open close small chat
-    $('.open-small-chat').on('click', function () {
-        $(this).children().toggleClass('fa-comments').toggleClass('fa-remove');
-        $('.small-chat-box').toggleClass('active');
-    });
 
-    // Initialize slimscroll for small chat
-    $('.small-chat-box .content').slimScroll({
-        height: '234px',
-        railOpacity: 0.4
-    });
-
-    // Small todo handler
-    $('.check-link').on('click', function () {
-        var button = $(this).find('i');
-        var label = $(this).next('span');
-        button.toggleClass('fa-check-square').toggleClass('fa-square-o');
-        label.toggleClass('todo-completed');
-        return false;
-    });
 
     // // Append config box / Only for demo purpose
     // // Uncomment on server mode to enable XHR calls
@@ -99,15 +70,10 @@ $(document).ready(function () {
     // Minimalize menu
     $('.navbar-minimalize, .overlay').on('click', function () {
         $("body").toggleClass("mini-navbar");
-        SmoothlyMenu();
+        animateMenu();
 
     });
 
-    // Tooltips demo
-    $('.tooltip-demo').tooltip({
-        selector: "[data-toggle=tooltip]",
-        container: "body"
-    });
 
 
     // Full height of sidebar
@@ -170,6 +136,11 @@ $(document).ready(function () {
     $('.full-height-scroll').slimscroll({
         height: '100%'
     })
+
+    // Local Storage functions
+    // Set proper body class and plugins based on user configuration
+    loadLocalThemeSettings()
+
 });
 
 
@@ -182,19 +153,23 @@ $(window).bind("resize", function () {
     }
 });
 
-// Local Storage functions
-// Set proper body class and plugins based on user configuration
-$(document).ready(function () {
+
+
+function loadLocalThemeSettings() {
     if (localStorageSupport()) {
 
         var collapse = localStorage.getItem("collapse_menu");
         var fixedsidebar = localStorage.getItem("fixedsidebar");
         var fixednavbar = localStorage.getItem("fixednavbar");
+        var fixednavbar2 = localStorage.getItem("fixednavbar2");
         var boxedlayout = localStorage.getItem("boxedlayout");
         var fixedfooter = localStorage.getItem("fixedfooter");
         var animationfade = localStorage.getItem("animationfade");
         var animationpush = localStorage.getItem("animationpush");
         var animationreveal = localStorage.getItem("animationreveal");
+        var skin1 = localStorage.getItem("skin1");
+        var skin2 = localStorage.getItem("skin2");
+        var skin3 = localStorage.getItem("skin3");
 
         var body = $('body');
 
@@ -205,7 +180,6 @@ $(document).ready(function () {
                 railOpacity: 0.9
             });
         }
-
         if (collapse == 'on') {
             if (body.hasClass('fixed-sidebar')) {
                 if (!body.hasClass('body-small')) {
@@ -228,16 +202,26 @@ $(document).ready(function () {
             $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
             body.addClass('fixed-nav');
         }
-
+        if (fixednavbar2 == 'on') {
+            $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
+            $("body").removeClass('boxed-layout');
+            $("body").addClass('fixed-nav').addClass('fixed-nav-basic');
+        }
         if (boxedlayout == 'on') {
             body.addClass('boxed-layout');
         }
-
         if (fixedfooter == 'on') {
             $(".footer").addClass('fixed');
         }
+        if (skin1 == 'on')
+            body.addClass('skin-1');
+        if (skin2 == 'on')
+            body.addClass('skin-2');
+        if (skin3 == 'on')
+            body.addClass('skin-3');
     }
-});
+}
+
 
 // check if browser support HTML5 local storage
 function localStorageSupport() {
@@ -259,11 +243,12 @@ function animationHover(element, animation) {
         });
 }
 
-function SmoothlyMenu(){
+function animateMenu(){
     if($('body').hasClass('body-small')) {
         // small viewport
         if(!$('body').hasClass('mini-navbar') ) {
             // hide
+
             $('#side-menu, .navbar-static-side').css('overflow', 'hidden');
 
             if($('body').hasClass('fixed-sidebar') && !$('body').hasClass('sidebar-reveal') && !$('body').hasClass('sidebar-push'))
@@ -274,6 +259,7 @@ function SmoothlyMenu(){
                 removeMenuStyles(); 
         } else {
             // show
+
             setTimeout(function () {
                 $('#side-menu, .navbar-static-side').css('overflow', 'visible');
             }, 400);
@@ -308,22 +294,19 @@ function SmoothlyMenu(){
 function hideMenuContent () {
     $('#side-menu').hide();
     // For smoothly turn on menu
-    setTimeout(
-        function () {
-            $('#side-menu').fadeIn(400);
-        }, 200);
+    setTimeout(function () {
+        $('#side-menu').fadeIn(400);
+    }, 200);
 }
 function hideMenuLabels () {
-    $('#side-menu .nav-label, #side-menu .arrow,#side-menu .label').hide();
+    $('#side-menu .nav-label, #side-menu .arrow,#side-menu .label,#side-menu li.active ul').hide();
     // For smoothly turn on menu
-    setTimeout(
-        function () {
-            $('#side-menu .nav-label, #side-menu .arrow, #side-menu .label').fadeIn(400);
-
+    setTimeout(function () {
+        $('#side-menu .nav-label, #side-menu .arrow, #side-menu .label,#side-menu li.active ul').fadeIn(400);
     }, 200);
 }
 function removeMenuStyles() {
-    $('#side-menu,#side-menu .nav-label,#side-menu .arrow,#side-menu .label').removeAttr('style');
+    $('#side-menu,#side-menu .nav-label,#side-menu .arrow,#side-menu .label,#side-menu li.active ul').removeAttr('style');
 }
 
 

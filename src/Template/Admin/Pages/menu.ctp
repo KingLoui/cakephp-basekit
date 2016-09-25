@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Navbar Settings</h5>
+                <h5>Menu Settings</h5>
             </div>
             <div class="ibox-content">
                 <div class="setings-item">
@@ -35,10 +35,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
                 <div class="setings-item">
                     <span>
                         Animation Fade
@@ -84,14 +80,10 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
+                <div class="hr-line-dashed"></div>
                 <div class="setings-item">
                     <span>
-                        Top navbar
+                        Fixed Top navbar
                     </span>
 
                     <div class="switch">
@@ -106,7 +98,7 @@
                 </div>
                 <div class="setings-item">
                     <span>
-                        Top navbar v.2
+                        Fixed Top navbar v.2
                         <br>
                         <small>*Primary layout</small>
                     </span>
@@ -121,6 +113,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="hr-line-dashed"></div>
                 <div class="setings-item">
                     <span>
                         Boxed layout
@@ -243,7 +236,6 @@
             }
         });
 
-
         // Enable/disable animation fade
         $('#animationfade').click(function (){
             if ($('#animationfade').is(':checked')){
@@ -253,20 +245,14 @@
                 $('#animationreveal').prop('checked', false);
 
                 if (localStorageSupport){
-                    localStorage.setItem("animationfade",'on');
-                }
-                if (localStorageSupport){
                     localStorage.setItem("animationreveal",'off');
                 }
                 if (localStorageSupport){
                     localStorage.setItem("animationpush",'off');
                 }
-            } else{
-                if (localStorageSupport){
-                    localStorage.setItem("animationfade",'off');
-                }
             }
         });
+
         // Enable/disable animation push
         $('#animationpush').click(function (){
             if ($('#animationpush').is(':checked')){
@@ -281,16 +267,15 @@
                 if (localStorageSupport){
                     localStorage.setItem("animationreveal",'off');
                 }
-                if (localStorageSupport){
-                    localStorage.setItem("animationfade",'off');
-                }
             } else{
+                $('#animationfade').prop('checked', 'checked');
                 $("body").removeClass('sidebar-push');
                 if (localStorageSupport){
                     localStorage.setItem("animationpush",'off');
                 }
             }
         });
+
         // Enable/disable animation reveal
         $('#animationreveal').click(function (){
             if ($('#animationreveal').is(':checked')){
@@ -303,12 +288,10 @@
                     localStorage.setItem("animationreveal",'on');
                 }
                 if (localStorageSupport){
-                    localStorage.setItem("animationreveal",'off');
-                }
-                if (localStorageSupport){
                     localStorage.setItem("animationpush",'off');
                 }
             } else{
+                $('#animationfade').prop('checked', 'checked');
                 $("body").removeClass('sidebar-reveal');
                 if (localStorageSupport){
                     localStorage.setItem("animationreveal",'off');
@@ -396,39 +379,6 @@
             }
         });
 
-        // SKIN Select
-        $('.spin-icon').click(function (){
-            $(".theme-config-box").toggleClass("show");
-        });
-
-        // Default skin
-        $('.s-skin-0').click(function (){
-            $("body").removeClass("skin-1");
-            $("body").removeClass("skin-2");
-            $("body").removeClass("skin-3");
-        });
-
-        // Blue skin
-        $('.s-skin-1').click(function (){
-            $("body").removeClass("skin-2");
-            $("body").removeClass("skin-3");
-            $("body").addClass("skin-1");
-        });
-
-        // Inspinia ultra skin
-        $('.s-skin-2').click(function (){
-            $("body").removeClass("skin-1");
-            $("body").removeClass("skin-3");
-            $("body").addClass("skin-2");
-        });
-
-        // Yellow skin
-        $('.s-skin-3').click(function (){
-            $("body").removeClass("skin-1");
-            $("body").removeClass("skin-2");
-            $("body").addClass("skin-3");
-        });
-
         if (localStorageSupport){
             var collapse = localStorage.getItem("collapse_menu");
             var fixedsidebar = localStorage.getItem("fixedsidebar");
@@ -436,7 +386,6 @@
             var fixednavbar2 = localStorage.getItem("fixednavbar2");
             var boxedlayout = localStorage.getItem("boxedlayout");
             var fixedfooter = localStorage.getItem("fixedfooter");
-            var animationfade = localStorage.getItem("animationfade");
             var animationpush = localStorage.getItem("animationpush");
             var animationreveal = localStorage.getItem("animationreveal");
 
@@ -458,15 +407,16 @@
             if (fixedfooter == 'on') {
                 $('#fixedfooter').prop('checked','checked')
             }
-            if (animationfade == 'on'){
-                $('#animationfade').prop('checked','checked')
-            }
             if (animationpush == 'on'){
                 $('#animationpush').prop('checked','checked')
             }
             if (animationreveal == 'on') {
                 $('#animationreveal').prop('checked','checked')
             }
+            if (animationpush != 'on' && animationreveal != 'on'){
+                $('#animationfade').prop('checked','checked')
+            }
+
         }
     </script>
 <?php $this->end(); ?>

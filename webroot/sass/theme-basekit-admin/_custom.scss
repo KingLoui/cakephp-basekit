@@ -49,7 +49,6 @@ body.body-small {
       #page-wrapper .overlay {visibility:visible;opacity:0.8;}
       overflow: visible;
     }
-    overflow:hidden;
 
     .mini-navbar {
       #page-wrapper {
@@ -111,11 +110,11 @@ body.body-small {
 
 }
 
-body.fixed-nav.fixed-nav-basic {
-  &.body-small .navbar-fixed-top {
-    left:220px;
+body.body-small.fixed-nav.fixed-nav-basic {
+  &.mini-navbar .navbar-fixed-top {
+    left:70px;
   }
-  &.fixed-sidebar.mini-navbar.body-small .navbar-fixed-top {
-    left:0;
+  &.fixed-sidebar.mini-navbar .navbar-fixed-top {
+    left:220px;
   }
 }

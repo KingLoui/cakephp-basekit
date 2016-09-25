@@ -63,7 +63,11 @@ class AdminMenuRenderer extends KnpListRenderer
     	if($item->getExtra('icon'))
     		$icon = '<i class="'.$item->getExtra('icon').'"></i>';
 
+        $label = $this->renderLabel($item, $options);
+        if($item->getLevel() == 1)
+            $label = '<span class="nav-label">'.$label."</span>";
 
-        return sprintf('<a href="%s"%s>%s%s%s</a>', $this->escape($item->getUri()),$this->renderHtmlAttributes($item->getLinkAttributes()), $icon, $this->renderLabel($item, $options),$childrenArrow);
+
+        return sprintf('<a href="%s"%s>%s%s%s</a>', $this->escape($item->getUri()),$this->renderHtmlAttributes($item->getLinkAttributes()), $icon,$label ,$childrenArrow);
     }
 }
