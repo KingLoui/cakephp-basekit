@@ -24,17 +24,15 @@ $user = $this->request->session()->read('Auth.User');
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script_head') ?>
 
-    <?= // Body scripts
-        $this->Html->script(
-        [
+    <?php // Body scripts
+        $this->prepend('scriptfiles_body', $this->Html->script([
             'KingLoui/BaseKit.vendor/jquery/jquery-3.1.0.min.js', 
             'KingLoui/BaseKit.vendor/bootstrap/bootstrap.min.js',
             'KingLoui/BaseKit.vendor/slimscroll/jquery.slimscroll.min.js',
             'KingLoui/BaseKit.vendor/metismenu/jquery.metisMenu.js',
             'KingLoui/BaseKit.vendor/pace/pace.min.js',
             'KingLoui/BaseKit.theme-basekit-admin.js'
-        ], 
-        ['block' => 'scriptfiles_body'])
+        ]));
     ?>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,6 +47,7 @@ $user = $this->request->session()->read('Auth.User');
             <div class="sidebar-collapse">
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
+                        <?= $this->fetch('sidebar_header') ?>
                         <div class="dropdown profile-element">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                     <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?= $user['first_name'] ?> <?= $user['last_name'] ?></strong>

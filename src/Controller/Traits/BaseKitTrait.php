@@ -52,28 +52,22 @@ trait BaseKitTrait
         //     $this->viewBuilder()->layout('KingLoui/BaseKit.default');
         // } 
 
-
         // Render Menu Set in Config Files
-        $setMenu = function($menuname, $config, $submenu = false) use ( &$setMenu ) {
-            $menu = $this->Menu->get($menuname);
-
+        $setMenu = function($menu, $config) use ( &$setMenu ) {
             foreach($config as $title => $cfg) {
                 if(isset($cfg['uri'])) {
-                    // no children
-                    if($submenu === false)
-                        $menu->addChild($title, $cfg);
-                    else 
-                        $menu[$submenu]->addChild($title, $cfg);
+                    // no submenu
+                    $menu->addChild($title, $cfg);
                 } else {
-                    // width submenu
+                    // with submenu
                     $menu->addChild($title, $cfg[0]);
                     unset($cfg[0]);
-                    $setMenu($menuname, $cfg, $title);
+                    $setMenu($menu[$title], $cfg);
                 }
             }
         };
-        $setMenu('menu_admin', Configure::read('Adminmenu'));
-
+        $menu = $this->Menu->get("menu_admin");
+        $setMenu($menu, Configure::read('Adminmenu'));
 
 
          parent::beforeRender($event);       
