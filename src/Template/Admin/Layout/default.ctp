@@ -1,6 +1,6 @@
-<?php
-$pageTitle = 'BaseKit:';
-$user = $this->request->session()->read('Auth.User');
+<?php $pageTitle = 'BaseKit:'; ?>
+<?php 
+    $user = $this->request->session()->read('Auth.User');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,29 +47,17 @@ $user = $this->request->session()->read('Auth.User');
             <div class="sidebar-collapse">
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
-                        <?= $this->fetch('sidebar_header') ?>
-                        <div class="dropdown profile-element">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                    <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?= $user['first_name'] ?> <?= $user['last_name'] ?></strong>
-                                     </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><li><?= $this->Html->link('Profile', ['prefix' => false,'plugin' => 'KingLoui/BaseKitUsers', 'controller' => 'Users', 'action' => 'profile']); ?></li></li>
-                                <li class="divider"></li>
-                                <li><?= $this->Html->link('Logout', ['prefix' => false,'plugin' => 'KingLoui/BaseKitUsers', 'controller' => 'Users', 'action' => 'logout']); ?></li>
-                            </ul>
-                        </div>
-                        <div class="logo-element">
-                            BK
-                        </div>
+                        <?php if($headerElement !== "") 
+                            echo $this->element('KingLoui/BaseKitUsers.adminbarheader');
+                        ?>
+                        <div class="logo-element">BK</div>
                     </li>
                     <?= $this->Menu->render('menu_admin',[
-                        //'matcher' => new Gourmet\KnpMenu\Menu\Matcher\Matcher($this->request),
                         'renderer' => '\KingLoui\BaseKit\Menu\Renderer\AdminMenuRenderer',
                         'currentClass' => 'active',
                         'ancestorClass' => 'active'
                     ]); ?>
                 </ul>
-
             </div>
         </nav>
         <div id="page-wrapper" class="gray-bg">
@@ -78,8 +66,9 @@ $user = $this->request->session()->read('Auth.User');
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#"><i class="fa fa-bars"></i> </a>
                     </div>
+                    <?php if($user): ?>
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
                             <span class="m-r-sm text-muted welcome-message">Welcome <?= $user['first_name'] ?>  <?= $user['last_name'] ?>!</span>
@@ -90,6 +79,7 @@ $user = $this->request->session()->read('Auth.User');
                             </a>
                         </li>
                     </ul>
+                    <?php endif; ?>
                 </nav>
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
@@ -97,7 +87,7 @@ $user = $this->request->session()->read('Auth.User');
                     <h2><?= $this->fetch('title') ?></h2>
                     <ol class="breadcrumb">
                         <li>
-                            <?= $this->Html->link('Home', "/"); ?>
+                            <?= $this->Html->link('Home', '/'); ?>
                         </li>
                         <li class="active">
                             <strong><?= $this->fetch('title') ?></strong>
