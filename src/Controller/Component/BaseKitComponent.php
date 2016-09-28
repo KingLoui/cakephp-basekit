@@ -35,6 +35,16 @@ class BaseKitComponent extends Component
 
         // set app layout to basekit layouts
         $controller->viewBuilder()->layout('KingLoui/BaseKit.default');
+        // if (isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
+        //     $this->viewBuilder()->layout('admin');
+        // } 
+
+
+        // show/hide theme examples and settings based on config
+        if(!Configure::read('BaseKit.NavSidebar.ShowThemeExamples'))
+            Configure::delete('BaseKit.NavSidebar.MenuItems.Theme Examples');
+        if(!Configure::read('BaseKit.NavSidebar.ShowThemeSettings'))
+            Configure::delete('BaseKit.NavSidebar.MenuItems.Theme Settings');
 
         // setup menu from config
         $setMenu = function($menu, $config) use ( &$setMenu ) {
@@ -52,12 +62,6 @@ class BaseKitComponent extends Component
         };
         $menu = $controller->Menu->get("menu_admin");
         $setMenu($menu, Configure::read('BaseKit.NavSidebar.MenuItems'));
-
-        // show/hide theme examples and settings based on config
-        if(!Configure::read('BaseKit.NavSidebar.ShowThemeExamples'))
-            Configure::delete('BaseKit.NavSidebar.MenuItems.Theme Examples');
-        if(!Configure::read('BaseKit.NavSidebar.ShowThemeSettings'))
-            Configure::delete('BaseKit.NavSidebar.MenuItems.Theme Settings');
 
         // set view vars
         $controller->set('headerElement', Configure::read('BaseKit.NavSidebar.HeaderElement'));
