@@ -1,3 +1,4 @@
+<?php $this->assign('title', 'Widgets'); ?>
 <?php $this->append('css'); ?>
     <?= $this->Html->css('KingLoui/BaseKit.vendor/iCheck/custom.css') ?>
 <?php $this->end(); ?>

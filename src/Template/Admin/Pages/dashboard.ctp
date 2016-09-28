@@ -1,4 +1,3 @@
-<?php
+<?php $this->assign('title', 'Dashboard'); ?>
 
-
-echo "test";
+test
