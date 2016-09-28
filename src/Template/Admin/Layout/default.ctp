@@ -1,7 +1,4 @@
 <?php $pageTitle = 'BaseKit:'; ?>
-<?php 
-    $user = $this->request->session()->read('Auth.User');
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,9 +45,9 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <?php if($headerElement !== "") 
-                            echo $this->element('KingLoui/BaseKitUsers.adminbarheader');
+                            echo $this->element($headerElement);
                         ?>
-                        <div class="logo-element">BK</div>
+                        <div class="logo-element"><?= $headerLogo ?></div>
                     </li>
                     <?= $this->Menu->render('menu_admin',[
                         'renderer' => '\KingLoui\BaseKit\Menu\Renderer\AdminMenuRenderer',
@@ -68,18 +65,9 @@
                     <div class="navbar-header">
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#"><i class="fa fa-bars"></i> </a>
                     </div>
-                    <?php if($user): ?>
-                    <ul class="nav navbar-top-links navbar-right">
-                        <li>
-                            <span class="m-r-sm text-muted welcome-message">Welcome <?= $user['first_name'] ?>  <?= $user['last_name'] ?>!</span>
-                        </li>
-                        <li>
-                            <a href="<?= $this->Url->build(['prefix' => false,'plugin' => 'KingLoui/BaseKitUsers', 'controller' => 'Users', 'action' => 'logout']); ?>">
-                                <i class="fa fa-sign-out"></i> Log out
-                            </a>
-                        </li>
-                    </ul>
-                    <?php endif; ?>
+                    <?php if($topLinksElement !== "") 
+                        echo $this->element($topLinksElement);
+                    ?>                    
                 </nav>
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
@@ -87,11 +75,12 @@
                     <h2><?= $this->fetch('title') ?></h2>
                     <ol class="breadcrumb">
                         <li>
-                            <?= $this->Html->link('Home', '/'); ?>
+                            <?= $this->Html->link('Home', '/admin'); ?>
                         </li>
-                        <li class="active">
-                            <strong><?= $this->fetch('title') ?></strong>
-                        </li>
+                        <?= $this->Menu->render('menu_admin',[
+                            'renderer' => '\KingLoui\BaseKit\Menu\Renderer\BreadcrumbsRenderer',
+                            'currentClass' => 'active'
+                        ]); ?>
                     </ol>
                 </div>
             </div>

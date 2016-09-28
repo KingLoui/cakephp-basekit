@@ -1,4 +1,5 @@
 <?php
+// based loosely on https://github.com/Nek-/KnpMenu/blob/219add0a71e4c70f9f928d809a242c0ffa92ab86/src/Knp/Menu/Renderer/BreadcrumbRenderer.php 
 
 namespace KingLoui\BaseKit\Menu\Renderer;
 
