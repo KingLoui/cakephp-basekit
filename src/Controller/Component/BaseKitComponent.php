@@ -30,9 +30,15 @@ class BaseKitComponent extends Component
             'Html' => ['className' => 'BootstrapUI.Html'],
             'Form' => ['className' => 'BootstrapUI.Form'],
             'Flash' => ['className' => 'BootstrapUI.Flash'],
-            'Paginator' => ['className' => 'BootstrapUI.Paginator']
+            'Paginator' => [
+                'className' => 'BootstrapUI.Paginator',
+                'labels' => [
+                    'prev' => '<i class="fa fa-chevron-left"></i>',
+                    'next' => '<i class="fa fa-chevron-right"></i>',
+                ]
+            ]
         ]);
-
+        
         // set app layout to basekit layouts
         if (isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
             $controller->viewBuilder()->layout('KingLoui/BaseKit.default');
