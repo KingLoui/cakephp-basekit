@@ -5,8 +5,14 @@ use Cake\Routing\Router;
 
 $config = [
   'BaseKit' => [
-      'AdminMenu' => [
+      'NavTop' => [
+        'TopLinksElement' => ''
+      ],
+      'NavSidebar' => [
         'HeaderElement' => '',
+        'HeaderLogo' => 'BK',
+        'ShowThemeExamples' => true,
+        'ShowThemeSettings' => true,
         'MenuItems' => [
            'Dashboard' => ['uri' => ['plugin' => 'KingLoui/BaseKit', "controller" => "Pages","action" => "display","dashboard"], 'extras' => ['icon' => 'fa fa-tachometer']],
            'Theme Settings' => [['uri' => '#', 'extras' => ['icon' => 'fa fa-paint-brush']],
