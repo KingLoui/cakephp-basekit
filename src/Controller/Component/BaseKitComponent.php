@@ -34,9 +34,8 @@ class BaseKitComponent extends Component
         ]);
 
         // set app layout to basekit layouts
-        //$controller->viewBuilder()->layout('KingLoui/BaseKit.default');
         if (isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
-            $this->viewBuilder()->layout('KingLoui/BaseKit.default');
+            $controller->viewBuilder()->layout('KingLoui/BaseKit.default');
         } 
 
 
