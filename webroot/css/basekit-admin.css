@@ -13858,6 +13858,10 @@ body.body-small:not(.fixed-sidebar).sidebar-reveal .sidebar-collapse, body.body-
 body.body-small:not(.fixed-sidebar).sidebar-push .sidebar-collapse {
   float: right; }
 
+.navbar-static-top,
+.navbar-fixed-top {
+  min-height: 61px; }
+
 @media (max-width: 768px) {
   #page-wrapper {
     position: inherit;
