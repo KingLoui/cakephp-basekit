@@ -19,8 +19,7 @@ class BaseKitComponent extends Component
     	$controller->loadComponent('Gourmet/KnpMenu.Menu');
     }
 
-    public function beforeRender(Event $event)
-    {      
+    public function beforeRender(Event $event) {      
     	$controller = $event->subject(); 
 
 
@@ -52,9 +51,17 @@ class BaseKitComponent extends Component
             }
         };
         $menu = $controller->Menu->get("menu_admin");
-        $setMenu($menu, Configure::read('BaseKit.AdminMenu.MenuItems'));
-        $controller->set('headerElement', Configure::read('BaseKit.AdminMenu.HeaderElement'));
-        //$manipulator = new MenuManipulator();
-        //debug($manipulator->getBreadcrumbsArray($menu));    
+        $setMenu($menu, Configure::read('BaseKit.NavSidebar.MenuItems'));
+
+        // show/hide theme examples and settings based on config
+        if(!Configure::read('BaseKit.NavSidebar.ShowThemeExamples'))
+            Configure::delete('BaseKit.NavSidebar.MenuItems.Theme Examples');
+        if(!Configure::read('BaseKit.NavSidebar.ShowThemeSettings'))
+            Configure::delete('BaseKit.NavSidebar.MenuItems.Theme Settings');
+
+        // set view vars
+        $controller->set('headerElement', Configure::read('BaseKit.NavSidebar.HeaderElement'));
+        $controller->set('headerLogo', Configure::read('BaseKit.NavSidebar.HeaderLogo'));
+        $controller->set('topLinksElement', Configure::read('BaseKit.NavTop.TopLinksElement'));
     }
 }
