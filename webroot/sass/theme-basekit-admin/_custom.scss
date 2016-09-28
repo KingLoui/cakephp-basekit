@@ -87,6 +87,11 @@ body.body-small {
   }
 }
 
+.navbar-static-top,
+.navbar-fixed-top {
+  min-height:61px;
+}
+
 @media (max-width: 768px) {
   #page-wrapper {
     position: inherit;
