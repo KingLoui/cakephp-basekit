@@ -54,8 +54,8 @@ class BaseKitComponent extends Component
             // setup menu from config
             $menu = $this->Controller->Menu->get("menu_admin");
             $this->buildMenu($menu, Configure::read('BaseKit.NavSidebar.MenuItems'));
-            //debug($this->isUrlAuthed("/admin"));
-            //debug($this->isUrlAuthed("/admin/users"));
+            //debug($this->urlIsAuthorized("/admin"));
+            //debug($this->urlIsAuthorized("/admin/users"));
 
             // set view vars
             $this->Controller->set('headerElement', Configure::read('BaseKit.NavSidebar.HeaderElement'));
@@ -64,7 +64,7 @@ class BaseKitComponent extends Component
         }
     }
 
-    public function isUrlAuthed($url) {
+    public function urlIsAuthorized($url) {
         return true;
     }
 
