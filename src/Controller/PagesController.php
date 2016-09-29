@@ -6,9 +6,15 @@ use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use KingLoui\BaseKit\Controller\AppController;
+use Cake\Event\Event;
 
 class PagesController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow('display');
+    }
 
     public function display()
     {
