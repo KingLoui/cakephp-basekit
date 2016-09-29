@@ -41,12 +41,8 @@ class BaseKitComponent extends Component
                 ]
             ]);
             
-            
-            
             // set app layout to basekit layouts
             $controller->viewBuilder()->layout('KingLoui/BaseKit.default');
-             
-
 
             // show/hide theme examples and settings based on config
             if(!Configure::read('BaseKit.NavSidebar.ShowThemeExamples'))
@@ -55,26 +51,28 @@ class BaseKitComponent extends Component
                 Configure::delete('BaseKit.NavSidebar.MenuItems.Theme Settings');
 
             // setup menu from config
-            $setMenu = function($menu, $config) use ( &$setMenu ) {
-                foreach($config as $title => $cfg) {
-                    if(isset($cfg['uri'])) {
-                        // no submenu
-                        $menu->addChild($title, $cfg);
-                    } else {
-                        // with submenu
-                        $menu->addChild($title, $cfg[0]);
-                        unset($cfg[0]);
-                        $setMenu($menu[$title], $cfg);
-                    }
-                }
-            };
-            $menu = $controller->Menu->get("menu_admin");
-            $setMenu($menu, Configure::read('BaseKit.NavSidebar.MenuItems'));
+            // setup menu from config
+            $menu = $this->Controller->Menu->get("menu_admin");
+            $this->buildMenu($menu, Configure::read('BaseKit.NavSidebar.MenuItems'));
 
             // set view vars
             $controller->set('headerElement', Configure::read('BaseKit.NavSidebar.HeaderElement'));
             $controller->set('headerLogo', Configure::read('BaseKit.NavSidebar.HeaderLogo'));
             $controller->set('topLinksElement', Configure::read('BaseKit.NavTop.TopLinksElement'));
+        }
+    }
+
+    public function buildMenu($menu, $config) {
+        foreach($config as $title => $cfg) {
+            if(isset($cfg['uri'])) {
+                // no submenu
+                $menu->addChild($title, $cfg);
+            } else {
+                // with submenu
+                $menu->addChild($title, $cfg[0]);
+                unset($cfg[0]);
+                $this->buildMenu($menu[$title], $cfg);
+            }
         }
     }
 }
