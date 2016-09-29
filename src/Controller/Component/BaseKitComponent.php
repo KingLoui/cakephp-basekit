@@ -51,7 +51,6 @@ class BaseKitComponent extends Component
                 Configure::delete('BaseKit.NavSidebar.MenuItems.Theme Settings');
 
             // setup menu from config
-            // setup menu from config
             $menu = $this->Controller->Menu->get("menu_admin");
             $this->buildMenu($menu, Configure::read('BaseKit.NavSidebar.MenuItems'));
 
