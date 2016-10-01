@@ -6,9 +6,6 @@ use Cake\Controller\Component;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 
-//use Cake\Network\Exception\NotFoundException;
-//use Knp\Menu\Util\MenuManipulator;
-
 class BaseKitComponent extends Component
 {
     public $Controller;
@@ -55,7 +52,7 @@ class BaseKitComponent extends Component
             $menu = $this->Controller->Menu->get("menu_admin");
             $this->buildMenu($menu, Configure::read('BaseKit.NavSidebar.MenuItems'));
             //debug($this->urlIsAuthorized("/admin"));
-            //debug($this->urlIsAuthorized("/admin/users"));
+            //debug($this->urlIsAuthorized("/admin/users/add"));
 
             // set view vars
             $this->Controller->set('headerElement', Configure::read('BaseKit.NavSidebar.HeaderElement'));
@@ -64,20 +61,29 @@ class BaseKitComponent extends Component
         }
     }
 
-    public function urlIsAuthorized($url) {
-        return true;
+    public function isUrlAuthorized($url) {
+        if(class_exists(\CakeDC\Users\Controller\Component\UsersAuthComponent::class)) {
+            $event = new Event(\CakeDC\Users\Controller\Component\UsersAuthComponent::EVENT_IS_AUTHORIZED, $this, ['url' => $url]);
+            $result = $this->Controller->eventManager()->dispatch($event);
+            return $result->result;
+        } else {
+            return true;
+        }
     }
 
     public function buildMenu($menu, $config) {
         foreach($config as $title => $cfg) {
             if(isset($cfg['uri'])) {
                 // no submenu
-                $menu->addChild($title, $cfg);
+                if($this->isUrlAuthorized($cfg['uri']))
+                    $menu->addChild($title, $cfg);
             } else {
                 // with submenu
-                $menu->addChild($title, $cfg[0]);
-                unset($cfg[0]);
-                $this->buildMenu($menu[$title], $cfg);
+                if($this->isUrlAuthorized($cfg[0]['uri'])){
+                    $menu->addChild($title, $cfg[0]);
+                    unset($cfg[0]);
+                    $this->buildMenu($menu[$title], $cfg);
+                }
             }
         }
     }
