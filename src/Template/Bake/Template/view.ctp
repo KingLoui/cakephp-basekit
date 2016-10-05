@@ -43,7 +43,7 @@ $pk = "\$$singularVar->{$primaryKey[0]}";
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-content">
-                <table class="vertical-table">
+                <table class="table">
             <% if ($groupedFields['string']) : %>
             <% foreach ($groupedFields['string'] as $field) : %>
             <% if (isset($associationFields[$field])) :
