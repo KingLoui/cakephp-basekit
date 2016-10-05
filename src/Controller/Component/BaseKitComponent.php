@@ -40,7 +40,7 @@ class BaseKitComponent extends Component
             ]);
             
             // set app layout to basekit layouts
-            $this->Controller->viewBuilder()->layout('KingLoui/BaseKit.default');
+            $this->Controller->viewBuilder()->layout('KingLoui/BaseKit.admin');
 
             // show/hide theme examples and settings based on config
             if(!Configure::read('BaseKit.NavSidebar.ShowThemeExamples'))
