@@ -130,7 +130,6 @@ foreach ($relations as $alias => $details):
                 <% foreach ($details['fields'] as $field): %>
                                 <th scope="col"><?= __('<%= Inflector::humanize($field) %>') ?></th>
                 <% endforeach; %>
-                                <th scope="col" class="actions"><?= __('Actions') ?></th>
                             </tr>
                             <?php foreach ($<%= $singularVar %>-><%= $details['property'] %> as $<%= $otherSingularVar %>): ?>
                             <tr>
