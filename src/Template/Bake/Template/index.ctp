@@ -28,7 +28,7 @@ if (!empty($indexColumns)) {
             <% foreach ($fields as $field): %>
                             <th scope="col"><?= $this->Paginator->sort('<%= $field %>') ?></th>
             <% endforeach; %>
-                            <th scope="col" class="actions"><?= __('Actions') ?></th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
