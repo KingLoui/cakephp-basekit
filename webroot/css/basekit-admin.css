@@ -13886,4 +13886,7 @@ body.body-small.fixed-nav.fixed-nav-basic.mini-navbar .navbar-fixed-top {
 body.body-small.fixed-nav.fixed-nav-basic.fixed-sidebar.mini-navbar .navbar-fixed-top {
   left: 220px; }
 
+table.table td.actions {
+  text-align: right; }
+
 /*# sourceMappingURL=basekit-admin.css.map */
