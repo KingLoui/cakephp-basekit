@@ -124,6 +124,13 @@ body.body-small.fixed-nav.fixed-nav-basic {
   }
 }
 
+// Tables
+
 table.table td.actions {
   text-align: right;
+}
+table.table.table-nostripes {
+  th, td {
+    border:none;
+  }
 }
