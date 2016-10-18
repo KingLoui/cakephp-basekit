@@ -26,38 +26,17 @@ class BaseKitComponent extends Component
             // load helpers
             $this->Controller->viewBuilder()->helpers([
                 'Url', 
-                'Gourmet/KnpMenu.Menu',
-                'Html' => ['className' => 'BootstrapUI.Html'],
-                'Form' => ['className' => 'BootstrapUI.Form'],
-                'Flash' => ['className' => 'BootstrapUI.Flash'],
-                'Paginator' => [
-                    'className' => 'BootstrapUI.Paginator',
-                    'labels' => [
-                        'prev' => '<i class="fa fa-chevron-left"></i>',
-                        'next' => '<i class="fa fa-chevron-right"></i>',
-                    ]
-                ]
+                'Gourmet/KnpMenu.Menu'
             ]);
             
             // set app layout to basekit layouts
             $this->Controller->viewBuilder()->layout('KingLoui/BaseKit.admin');
-
-            // show/hide theme examples and settings based on config
-            if(!Configure::read('BaseKit.NavSidebar.ShowThemeExamples'))
-                Configure::delete('BaseKit.NavSidebar.MenuItems.Theme Examples');
-            if(!Configure::read('BaseKit.NavSidebar.ShowThemeSettings'))
-                Configure::delete('BaseKit.NavSidebar.MenuItems.Theme Settings');
 
             // setup menu from config
             $menu = $this->Controller->Menu->get("menu_admin");
             $this->buildMenu($menu, Configure::read('BaseKit.NavSidebar.MenuItems'));
             //debug($this->urlIsAuthorized("/admin"));
             //debug($this->urlIsAuthorized("/admin/users/add"));
-
-            // set view vars
-            $this->Controller->set('headerElement', Configure::read('BaseKit.NavSidebar.HeaderElement'));
-            $this->Controller->set('headerLogo', Configure::read('BaseKit.NavSidebar.HeaderLogo'));
-            $this->Controller->set('topLinksElement', Configure::read('BaseKit.NavTop.TopLinksElement'));
         }
     }
 
