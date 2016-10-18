@@ -7,8 +7,7 @@
         "cakephp/cakephp": ">=3.3.2 <4.0.0",
         "burzum/cakephp-file-storage": "^1.1",
         "burzum/cakephp-imagine-plugin": "^2.1",
-        "gourmet/knp-menu": "~0.4",
-        "friendsofcake/bootstrap-ui": "^0.5.1"
+        "gourmet/knp-menu": "~0.4"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
