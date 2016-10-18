@@ -1,3 +1,3 @@
 <?php $this->assign('title', 'Dashboard'); ?>
 
-test
+BaseKit Admin Front Page

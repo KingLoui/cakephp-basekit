@@ -34,7 +34,7 @@ class BaseKitComponent extends Component
 
             // setup menu from config
             $menu = $this->Controller->Menu->get("menu_admin");
-            $this->buildMenu($menu, Configure::read('BaseKit.NavSidebar.MenuItems'));
+            $this->buildMenu($menu, Configure::read('BaseKit.Menu.AdminMenu'));
             //debug($this->urlIsAuthorized("/admin"));
             //debug($this->urlIsAuthorized("/admin/users/add"));
         }

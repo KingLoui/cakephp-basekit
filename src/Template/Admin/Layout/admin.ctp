@@ -13,8 +13,6 @@
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('KingLoui/BaseKit.basekit-admin.css') ?>
-    <?= $this->Html->css('KingLoui/BaseKit.vendor/animate/animate.css') ?>
-    <?= $this->Html->css('KingLoui/BaseKit.vendor/font-awesome/font-awesome.min.css') ?>
     
 
     <?= $this->fetch('meta') ?>
@@ -23,12 +21,6 @@
 
     <?php // Body scripts
         $this->prepend('scriptfiles_body', $this->Html->script([
-            'KingLoui/BaseKit.vendor/jquery/jquery-3.1.0.min.js', 
-            'KingLoui/BaseKit.vendor/bootstrap/bootstrap.min.js',
-            'KingLoui/BaseKit.vendor/slimscroll/jquery.slimscroll.min.js',
-            'KingLoui/BaseKit.vendor/metismenu/jquery.metisMenu.js',
-            'KingLoui/BaseKit.vendor/pace/pace.min.js',
-            'KingLoui/BaseKit.theme-basekit-admin.js'
         ]));
     ?>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,6 +31,7 @@
     <![endif]-->
   </head>
   <body class="">
+<<<<<<< Updated upstream
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
@@ -88,6 +81,15 @@
                 <?= $this->fetch('content') ?>
             </div>
         </div>
+=======
+    <div id="navbar">
+        <?= $this->Menu->render('menu_admin'); ?>
+    </div>
+    <div id="content">
+        <h2><?= $this->fetch('title') ?></h2>
+        <?= $this->Flash->render() ?>
+        <?= $this->fetch('content') ?>
+>>>>>>> Stashed changes
     </div>
     <?= $this->fetch('scriptfiles_body') ?>
     <?= $this->fetch('script_body') ?>
