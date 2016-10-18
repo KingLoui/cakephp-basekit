@@ -32,6 +32,7 @@
   </head>
   <body class="">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
@@ -82,6 +83,8 @@
             </div>
         </div>
 =======
+=======
+>>>>>>> Stashed changes
     <div id="navbar">
         <?= $this->Menu->render('menu_admin'); ?>
     </div>
@@ -89,7 +92,6 @@
         <h2><?= $this->fetch('title') ?></h2>
         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
->>>>>>> Stashed changes
     </div>
     <?= $this->fetch('scriptfiles_body') ?>
     <?= $this->fetch('script_body') ?>
