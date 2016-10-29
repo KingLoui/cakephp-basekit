@@ -28,15 +28,10 @@ class BaseKitComponent extends Component
                 'Url', 
                 'Gourmet/KnpMenu.Menu'
             ]);
-            
-            // set app layout to basekit layouts
-            $this->Controller->viewBuilder()->layout('KingLoui/BaseKit.admin');
 
             // setup menu from config
             $menu = $this->Controller->Menu->get("menu_admin");
             $this->buildMenu($menu, Configure::read('BaseKit.Menu.AdminMenu'));
-            //debug($this->urlIsAuthorized("/admin"));
-            //debug($this->urlIsAuthorized("/admin/users/add"));
         }
     }
 
