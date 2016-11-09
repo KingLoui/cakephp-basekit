@@ -22,5 +22,10 @@
             "KingLoui\\BaseKit\\Test\\": "tests",
             "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
         }
-    }
+    },
+    "suggest": {
+        "kingloui/cakephp-basekit-themes": "Required module if you want to use themes built for BaseKit",
+        "kingloui/cakephp-basekit-users": "Required module if you want to use CakeDC Users as usermanagement solution",
+        "kingloui/cakephp-basekit-construct": "Required module if you want to use the cakephp-construct plugin to create free content"
+    },
 }
