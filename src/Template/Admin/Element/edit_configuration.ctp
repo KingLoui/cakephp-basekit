@@ -16,31 +16,35 @@ if($configuration):
 
 <?php endif; ?>
 
+<?php $this->start('script_body'); ?>
+<script>
+	$(document).ready(function(){
 
+		var form = ".ajaxconfig";
+		$(form).submit(function(e) {
+			e.preventDefault();
+		  var url = $(this).attr('action');
+		  var data = $(form).serialize();
+		  $.ajax({
+				type: 'post',
+				url: url,
+				data: data,
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				},
+				success: function(res)
+				{
+					console.log('Redirect to: ' + res._redirect.url + ' (status code ' + res._redirect.status + ')');
+					console.log('Message: ' + res._message[0].message);
+					console.log("Raw data: " + JSON.stringify(res));
+				},
+				error: function(e) {
+					alert("An error occurred: " + JSON.stringify(e));
+					console.log(e);
+				}
+		  });
+	});
 
- <?php $this->start('script_body'); ?>
-    <script>
-        $(document).ready(function(){
-
-        	var form = ".ajaxconfig";
-        	$(form).submit(function(e) {
-			    var url = $(this).attr('action');
-			    $.ajax({
-			           type: "POST",
-			           url: url,
-			           data: $(form).serialize(),
-			           success: function(data)
-			           {
-			               console.log(data); 
-			               //alert(data); 
-			           },
-			           error: function (xhr, ajaxOptions, thrownError) {
-				        alert(xhr.status+" "+thrownError);
-				      }
-			    });
-			    e.preventDefault();
-			});
-
-        });
-    </script>
+	});
+</script>
 <?php $this->end(); ?>
