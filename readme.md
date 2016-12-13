@@ -1,4 +1,4 @@
-# BaseKitThemes plugin for CakePHP
+# BaseKit plugin for CakePHP
 
 ## Installation
 
