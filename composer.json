@@ -6,6 +6,7 @@
         "php": ">=5.5.9",
         "cakephp/cakephp": ">=3.3.2 <4.0.0",
         "gourmet/knp-menu": "~0.4",
+        "symfony/yaml": "~3.0",
         "gourmet/aroma": "dev-master",
         "dereuromark/cakephp-ajax": "dev-master"
     },
