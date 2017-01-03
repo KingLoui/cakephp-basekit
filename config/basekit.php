@@ -2,10 +2,11 @@
 
 $config = [
   'BaseKit' => [
-      'Modules' => [
-        'Users' => true,
-        'Themes' => true,
-        'Construct' => true,
+      'Themes' => [
+        'ThemeAdmin' => false,
+        'ThemeDefault' => false,
+        'LayoutAdmin' => 'default',
+        'LayoutDefault' => 'default'
       ],
       'Menu' => [
         'AdminMenu' => [
