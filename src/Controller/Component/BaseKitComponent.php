@@ -6,7 +6,6 @@ use Cake\Controller\Component;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Event\EventManager;
-use KingLoui\BaseKit\Renderer\YamlMenuParser;
 
 class BaseKitComponent extends Component
 {
@@ -19,11 +18,6 @@ class BaseKitComponent extends Component
         $this->Controller->loadComponent('RequestHandler');
         $this->Controller->loadComponent('Flash');
         $this->Controller->loadComponent('Gourmet/KnpMenu.Menu');
-
-
-        EventManager::instance()->on('BaseKit.Menu.Sidebar', function ($event, $menu) {
-            $yaml = new YamlMenuParser($menu, 'basekit/adminmenu.yaml');
-        });
     }
 
     public function beforeRender(Event $event) {      
