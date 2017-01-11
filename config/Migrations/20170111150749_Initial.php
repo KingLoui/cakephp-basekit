@@ -32,7 +32,7 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => false,
             ])
-          
+            ->create();
     }
 
     public function down()
