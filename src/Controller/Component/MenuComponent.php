@@ -6,21 +6,22 @@ use Cake\Controller\Component;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Event\EventManager;
+use CakeDC\Users\Controller\Component\UsersAuthComponent;
+use Gourmet\KnpMenu\Controller\Component\MenuComponent as BaseComponent;
 
-class BaseKitComponent extends Component
+class MenuComponent extends BaseComponent
 {
     public $Controller;
 
     public function initialize(array $config) {
+        parent::initialize($config);
         $controller = $this->_registry->getController();
         $this->Controller = $controller;
-
-        $this->Controller->loadComponent('RequestHandler');
-        $this->Controller->loadComponent('Flash');
-        $this->Controller->loadComponent('Gourmet/KnpMenu.Menu');
     }
 
-    public function beforeRender(Event $event) {      
+    public function beforeRender(Event $event) {   
+        parent::beforeRender($event);
+
         // Only do setup for basekit if prefix is admin
         if (isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
 
@@ -31,15 +32,15 @@ class BaseKitComponent extends Component
             ]);
 
             // setup menu from config
-            $menu = $this->Controller->Menu->get("menu_admin");
+            $menu = $this->get('menu_admin');
             $this->buildMenu($menu, Configure::read('BaseKit.Menu.AdminMenu'));
         }
 
     }
 
     public function isUrlAuthorized($url) {
-        if(class_exists(\CakeDC\Users\Controller\Component\UsersAuthComponent::class)) {
-            $event = new Event(\CakeDC\Users\Controller\Component\UsersAuthComponent::EVENT_IS_AUTHORIZED, $this, ['url' => $url]);
+        if(class_exists(UsersAuthComponent::class)) {
+            $event = new Event(UsersAuthComponent::EVENT_IS_AUTHORIZED, $this, ['url' => $url]);
             $result = $this->Controller->eventManager()->dispatch($event);
             return $result->result;
         } else {

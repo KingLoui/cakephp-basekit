@@ -29,10 +29,10 @@ class ThemesComponent extends Component
         		// apply default theme config
                 $theme = Configure::read('BaseKit.Themes.ThemeDefault');
                 $layout = Configure::read('BaseKit.#Themes.LayoutDefault');
-        	
         	}
 
             if($theme !== false) {
+                $this->Controller->loadComponent($theme . '.Theme');
                 $this->Controller->viewBuilder()->className($theme . '.Theme');
                 $this->Controller->viewBuilder()->theme($theme);
             }
